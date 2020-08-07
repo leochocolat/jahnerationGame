@@ -30,6 +30,9 @@ class GameManager {
 
         this.progressBarCompletion = document.querySelectorAll('.progress-completion');
         this.looseComponent = new Loose(document.querySelector('.js-section-loose'));
+
+        this.form = new Form(document.querySelector('.js-form-component'));
+        this.form.transitionIn();
     }
 
     _setup() {
