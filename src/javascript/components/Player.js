@@ -358,6 +358,7 @@ class Player {
             case 'swipeup':
             case 'tap':
                 this._isJumping = true;
+                this._isPlayerJumping = true;
                 this._playJumpAnimation();
                 break;
             case 'swipeleft':
