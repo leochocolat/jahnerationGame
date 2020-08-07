@@ -1,6 +1,8 @@
 import _ from 'underscore';
 import { TimelineLite, TweenLite, Power1, Power3, TweenMax } from 'gsap';
 
+import DeviceUtils from "../utils/DeviceUtils";
+
 class ControlsIndications {
     constructor(el) {
         this.el = el;
@@ -11,43 +13,29 @@ class ControlsIndications {
             left: this.el.querySelector('.js-key-left'),
             right: this.el.querySelector('.js-key-right'),
             contentContainer: this.el.querySelector('.js-content-container'),
-            content: this.el.querySelector('.js-content')
+            controlText: this.el.querySelector('.js-control-text'),
+            controlKey: this.el.querySelector('.js-control-key'),
+            controlJumpText: this.el.querySelector('.js-jump-text'),
         }
-
+        this._setupContent();
         this._setup();
+    }
+
+    _setupContent() {
+        if(DeviceUtils.isMobile() || DeviceUtils.isTablet() || DeviceUtils.isTouch()) {
+            this.ui.controlText.innerHTML = "Tap ou swipe up";
+            this.ui.controlJumpText.innerHTML = "Tap/SwipeUp"
+        }
     }
 
     _setup() {
         this._setupTransitionTween();
 
+        this._changeControlText = false;
+
         TweenLite.set(this.ui.left, { autoAlpha: 0 });
         TweenLite.set(this.ui.right, { autoAlpha: 0 });
         TweenLite.set(this.ui.spacebar, { autoAlpha: 0 });
-
-        // setTimeout(() => {
-        // this.transitionIn();
-
-        // setTimeout(() => {
-        //     this.transitionInKey(this.ui.spacebar);
-        //     setTimeout(() => {
-        //         this.transitionOutKey(this.ui.spacebar);
-        //     }, 1000)
-        // }, 1000)
-        // setTimeout(() => {
-        //     this.transitionInKey(this.ui.left);
-        //     this.transitionInKey(this.ui.right);
-        //     setTimeout(() => {
-        //         // this.transitionOutKey(this.ui.left);
-        //         // this.transitionOutKey(this.ui.right);
-        //     }, 1000)
-        // }, 2000)
-        // setTimeout(() => {
-        //     setTimeout(() => {
-        //         this.transitionOut();
-        //     }, 1000)
-        // }, 3000)
-        // }, 2000);
-
     }
 
     _setupTransitionTween() {
@@ -129,9 +117,26 @@ class ControlsIndications {
         TweenLite.to(el, DURATION, { x: TRANSLATEX, y: -TRANSLATEY, ease: EASE });
     }
 
+    _changeTextToSwipe() {
+        if(DeviceUtils.isMobile() || DeviceUtils.isTablet() || DeviceUtils.isTouch()) {
+            this.ui.controlText.innerHTML = "Swipe";
+            this.ui.controlJumpText.innerHTML = "Swipe"
+            this.ui.controlKey.innerHTML = "se déplacer"
+        } else {
+            this.ui.controlText.innerHTML = "Appuyer sur les flèches";
+            this.ui.controlKey.innerHTML = "se déplacer"
+            // this.ui.controlKey.innerHTML = ""
+        }
+    }
+
     _validateControl(el) {
         const DURATION = 0.2;
         const EASE = Power3.easeOut;
+
+        if(!this._changeControlText && el.classList.contains("js-key-spacebar")) {
+            this._changeControlText = true;
+            this._changeTextToSwipe();
+        }
 
         let boxTop = el.querySelector('.js-box-top');
         let boxRight = el.querySelector('.js-box-right');
