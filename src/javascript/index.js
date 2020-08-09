@@ -1,6 +1,7 @@
 import SelectPlayer from './components/SelectPlayer';
 import DeviceUtils from './utils/DeviceUtils';
 import AudioManager from './managers/AudioManager';
+import SoundButtonComponent from './components/SoundButtonComponent';
 
 let width, height;
 let orientationMessage = document.querySelector('.js-orientation-message');
@@ -11,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setup() {
     new SelectPlayer();
+    new SoundButtonComponent(document.querySelector('.js-sound-button'))
+    
     checkSize();
     setupEventListeners();
 }

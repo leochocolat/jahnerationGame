@@ -1,0 +1,45 @@
+.sound-button
+    display: flex
+    align-items: center
+
+    position: absolute
+    left: 20px
+    bottom: 20px
+
+    width: 60px
+    height: 40px
+
+    border: none
+    outline: none
+    border-radius: 0
+    z-index: 100
+    cursor: pointer
+
+    background-color: $bgRed
+
+.sound-button__icon
+    height: 80%
+    width: auto
+
+    margin: auto 0
+
+.sound-button__lines-container
+    display: flex
+    justify-content: center
+
+    width: 100%
+    height: 50%
+
+.sound-button__line
+    width: 4px
+    height: 100%
+
+    margin: 0 1px
+
+    background: white
+
+    transform-origin: left bottom
+
+    &:last-child
+        margin-right: 0
+

@@ -2,6 +2,7 @@ import bindAll from '../utils/bindAll';
 import emitter from '../events/emitter';
 
 import { Howl, Howler } from 'howler';
+import DeviceUtils from '../utils/DeviceUtils';
 
 
 class AudioManager {
@@ -11,6 +12,10 @@ class AudioManager {
     }
 
     _setup() {
+        if (DeviceUtils.isMobile()) {
+            Howler.volume(0);
+        }
+
         this._setupSounds();
         this._loadAudios();
         this._setupHowler();
@@ -50,8 +55,8 @@ class AudioManager {
         emitter.on('play:ambiance', this._playAmbianceHandler);
         emitter.on('stop:ambiance', this._stopAmbianceHandler);
         emitter.on('play:sound', this._playSoundHandler);
-        emitter.on('sound:on', this._muteSoundHandler);
-        emitter.on('sound:off', this._unmuteSoundHandler);
+        emitter.on('sound:on', this._unmuteSoundHandler);
+        emitter.on('sound:off', this._muteSoundHandler);
     }
 
     _playAmbianceHandler(e) {
@@ -67,11 +72,11 @@ class AudioManager {
     }
 
     _muteSoundHandler(e) {
-
+        Howler.volume(0);
     }
 
     _unmuteSoundHandler(e) {
-
+        Howler.volume(1);
     }
 }
 
