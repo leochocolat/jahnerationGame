@@ -17,8 +17,6 @@ class Form {
             backgroundTransitionWhite: document.querySelector('.js-bgContainer-white'),
             formValidation: document.querySelector('.js-form-validation')
         } 
-
-        console.log(this.ui.formValidation)
         
         this._setup();
     }
