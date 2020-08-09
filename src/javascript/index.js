@@ -1,5 +1,6 @@
 import SelectPlayer from './components/SelectPlayer';
 import DeviceUtils from './utils/DeviceUtils';
+import AudioManager from './managers/AudioManager';
 
 let width, height;
 let orientationMessage = document.querySelector('.js-orientation-message');

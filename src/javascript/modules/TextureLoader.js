@@ -2,6 +2,7 @@ import _ from 'underscore';
 import Pixi from '../components/Pixi';
 import DeviceUtils from '../utils/DeviceUtils';
 import SplitText from '../vendors/SplitText';
+import emitter from '../events/emitter';
 
 import { TweenLite, Power3, Power4, TweenMax } from 'gsap';
 
@@ -107,6 +108,7 @@ class TextureLoader {
         this._requestFullScreenIos();
         this._toggleFullScreenButton();
         this.pixiComponent.setupPlayer(index, spritesheet)
+        emitter.emit('play:ambiance', {}, { passive: true });
     }
 
     _toggleFullScreenButton() {

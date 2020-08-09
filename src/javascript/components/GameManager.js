@@ -5,6 +5,7 @@ import Cinematic from '../components/Cinematic';
 import CountDown from './CountDown';
 import ControlsIndications from './ControlsIndications';
 import { TweenLite } from 'gsap';
+import emitter from '../events/emitter';
 
 
 class GameManager {
@@ -61,9 +62,9 @@ class GameManager {
         this._timer.resetTimer();
 
         setTimeout(() => {
-
             this._countDown.animateIn();
         }, 2000);
+
         this._isWaitingToStart = true;
 
         let counter = 3;
@@ -145,7 +146,6 @@ class GameManager {
     }
 
     _updateTimerSeconds() {
-        
         this._currentTime = this._timer.getDeltaTime();
     }
 
@@ -173,7 +173,8 @@ class GameManager {
             this._cinematic.play().then(() => {
                 this.form = new Form(document.querySelector('.js-form-component'));
                 this.form.transitionIn();
-            
+                emitter.emit('stop:ambiance', {}, { passive: true });
+
                 setTimeout(() => {
                     this._cinematic.transitionOut();
                 }, 800);
