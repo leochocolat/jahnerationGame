@@ -30,6 +30,7 @@ class GameManager {
         this._setup();
 
         this.progressBarCompletion = document.querySelectorAll('.progress-completion');
+        this.gameLevelLabel = document.querySelector('.js-level');
         this.looseComponent = new Loose(document.querySelector('.js-section-loose'));
 
         // this.form = new Form(document.querySelector('.js-form-component'));
@@ -122,10 +123,13 @@ class GameManager {
     _levelDifficulty() {
         if (this._timer.seconds > 2.00 && this.gameSpeed == 0.8) {
             this.gameSpeed = 1
+            this.gameLevelLabel.innerHTML = `Level ${1}`;
         } else if (this._timer.seconds > 20.00 && this.gameSpeed == 1) {
             this.gameSpeed = 1.2
+            this.gameLevelLabel.innerHTML = `Level ${2}`;
         } else if (this._timer.seconds > 30.00 && this.gameSpeed == 1.2) {
             this.gameSpeed = 1.4
+            this.gameLevelLabel.innerHTML = `Level ${3}`;
         } else if (this._timer.seconds > 50.00 && this.gameSpeed == 1.4) {
             this._endGame()
         }
