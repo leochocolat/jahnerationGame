@@ -2,6 +2,7 @@ import bindAll from '../utils/bindAll';
 import emitter from '../events/emitter';
 
 import { TimelineMax, Power0, TweenLite } from 'gsap';
+import DeviceUtils from '../utils/DeviceUtils';
 
 class SoundButtonComponent {
     constructor(el) {
@@ -18,6 +19,9 @@ class SoundButtonComponent {
     }
 
     _setup() {
+        if (DeviceUtils.isMobile()) return;
+        
+        this.el.classList.add('is-active');
         this._setupEventListeners();
         this._setupTimeline();
     }

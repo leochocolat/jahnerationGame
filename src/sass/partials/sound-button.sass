@@ -1,5 +1,5 @@
 .sound-button
-    display: flex
+    display: none
     align-items: center
 
     position: absolute
@@ -16,6 +16,9 @@
     cursor: pointer
 
     background-color: $bgRed
+
+    &.is-active
+        display: flex
 
 .sound-button__icon
     height: 80%
