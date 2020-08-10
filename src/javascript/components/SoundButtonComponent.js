@@ -1,7 +1,7 @@
 import bindAll from '../utils/bindAll';
 import emitter from '../events/emitter';
 
-import { TimelineMax, Power0 } from 'gsap';
+import { TimelineMax, Power0, TweenLite } from 'gsap';
 
 class SoundButtonComponent {
     constructor(el) {
@@ -46,11 +46,14 @@ class SoundButtonComponent {
     _mute() {
         emitter.emit('sound:off', {});
         this._timeline.stop();
+        TweenLite.to(this.ui.lines, .3, { scaleY: 0.15, ease: Power0.easeNone }, 0);
     }
 
     _onmute() {
         emitter.emit('sound:on', {});
-        this._timeline.play();
+        this._timeline.stop();
+        this._setupTimeline();
+        this._timeline.start();
     }
 
     _setupEventListeners() {
