@@ -42,10 +42,11 @@ class GameManager {
 
         this._setupContolsTutorial();
 
-        setTimeout(() => {
-            this.form = new Form(document.querySelector('.js-form-component'));
-            this.form.transitionIn();
-        }, 1000)
+        //debug
+        // setTimeout(() => {
+        //     this.form = new Form(document.querySelector('.js-form-component'));
+        //     this.form.transitionIn();
+        // }, 1000)
     }
 
     _setupContolsTutorial() {

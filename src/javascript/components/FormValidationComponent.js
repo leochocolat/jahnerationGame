@@ -25,7 +25,6 @@ class FormValidationComponent {
         timeline.staggerFromTo(this.ui.micros, 1, { autoAlpha: 0, y: '-40%' }, { autoAlpha: 1, y: '-50%', ease: Power3.easeOut }, 0.1, 0.2);
         timeline.fromTo(this.ui.text, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeInOut }, 0);
         timeline.staggerFromTo(this.ui.buttons, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.05, 0.2);
-        timeline.staggerFromTo(this.ui.buttons, 1, { y: 30 }, { y: 0, ease: Power3.easeOut }, 0.05, 0.2);
     }
 
     transitionOut() {
