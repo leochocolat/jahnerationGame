@@ -32,9 +32,6 @@ class GameManager {
         this.progressBarCompletion = document.querySelectorAll('.progress-completion');
         this.gameLevelLabel = document.querySelector('.js-level');
         this.looseComponent = new Loose(document.querySelector('.js-section-loose'));
-
-        // this.form = new Form(document.querySelector('.js-form-component'));
-        // this.form.transitionIn();
     }
 
     _setup() {
@@ -44,6 +41,11 @@ class GameManager {
         this._timer.resetTimer();
 
         this._setupContolsTutorial();
+
+        setTimeout(() => {
+            this.form = new Form(document.querySelector('.js-form-component'));
+            this.form.transitionIn();
+        }, 1000)
     }
 
     _setupContolsTutorial() {
