@@ -50,7 +50,6 @@ class SelectPlayer {
             timeline.set(this._ui.backgroundTransitionContainer, { autoAlpha: 1 }, 0);
             timeline.to(this._ui.backgroundTransitionWhite, 1.6, { x: '-200%', ease: Power4.easeInOut }, 0);
             timeline.to(this._ui.backgroundTransitionRed, 1.6, { x: '-200%', ease: Power4.easeInOut }, 0.1);
-            timeline.set(this.container, { display: 'none' }, 1);
         }
     }
 

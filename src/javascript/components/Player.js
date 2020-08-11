@@ -73,7 +73,7 @@ class Player {
     }
 
     _setupHammer() {
-        let container = document.querySelector("#home")
+        let container = document.querySelector(".js-tap-target")
         this.options = {
             direction: Hammer.DIRECTION_ALL
         }
