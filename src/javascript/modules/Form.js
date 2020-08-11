@@ -1,6 +1,7 @@
 import { TweenLite, TimelineLite, Power3 } from "gsap";
 import bindAll from '../utils/bindAll';
 import SplitText from '../vendors/SplitText';
+import FormValidationComponent from '../components/FormValidationComponent';
 
 const ACTIONURL = 'https://leomouraire.us5.list-manage.com/subscribe/post?u=865e089434b6e7d78112f0878&amp;id=4a0729be21';
 
@@ -24,6 +25,10 @@ class Form {
             inputs: document.querySelectorAll('.js-input'),
             submit: document.querySelector('.js-submit'),
         } 
+
+        this.components = {
+            formValidation: new FormValidationComponent(this.ui.formValidation)
+        }
         
         this._setup();
     }
@@ -59,13 +64,17 @@ class Form {
     }
 
     transitionOut() {
-        let timeline = new TimelineLite();
+        let timeline = new TimelineLite({
+            // onComplete: () => { this.components.formValidation.transitionIn(); }
+        });
 
         timeline.set(this.ui.backgroundTransitionContainer, { autoAlpha: 1 }, 0);
         timeline.fromTo(this.ui.backgroundTransitionWhite, 1.6, { x: '0%' }, { x: '-200%', ease: Power4.easeInOut }, 0);
         timeline.fromTo(this.ui.backgroundTransitionRed, 1.6, { x: '0%' }, { x: '-200%', ease: Power4.easeInOut }, 0.1);
         timeline.set(this.el, { autoAlpha: 1, display: 'none' }, 0.8);
         timeline.set(this.ui.formValidation, { autoAlpha: 1, display: 'block' }, 0.8);
+
+        this.components.formValidation.transitionIn();
     }
 
     _setupEventListener() {
