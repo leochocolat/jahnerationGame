@@ -231,9 +231,9 @@ class Pixi {
     }
 
     _reloadPage() {
-        if (this._gameManager && this._deltaTime > 1500) {
-            window.location.reload()
-        }
+        // if (this._gameManager && this._deltaTime > 1500) {
+        //     window.location.reload()
+        // }
     }
 }
 
