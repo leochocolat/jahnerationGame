@@ -12,7 +12,7 @@ class AudioManager {
     }
 
     _setup() {
-        if (DeviceUtils.isMobile()) {
+        if (DeviceUtils.isMobile() || DeviceUtils.isTouch()) {
             Howler.volume(0);
         }
 
