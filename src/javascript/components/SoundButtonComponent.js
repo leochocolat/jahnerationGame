@@ -19,7 +19,7 @@ class SoundButtonComponent {
     }
 
     _setup() {
-        if (DeviceUtils.isMobile()) return;
+        if (DeviceUtils.isMobile() || DeviceUtils.isTouch()) return;
         
         this.el.classList.add('is-active');
         this._setupEventListeners();

@@ -25,6 +25,8 @@ class ResizeManager extends EventDispatcher {
     _getViewportSize() {
         this._viewportWidth = Math.min(window.innerWidth || 0);
         this._viewportHeight = Math.min(window.innerHeight || 0);
+
+        this._resizeCssViewportVariable();
     }
 
     _getDocumentSize() {
@@ -33,6 +35,10 @@ class ResizeManager extends EventDispatcher {
 
         this._documentWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
         this._documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    }
+
+    _resizeCssViewportVariable() {
+        document.documentElement.style.setProperty('--vh', `${this._viewportHeight * 0.01}px`);
     }
 
     _setupEventListeners() {

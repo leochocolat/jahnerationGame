@@ -14,7 +14,8 @@ class DeviceUtils {
 
     isTablet() {
         const UA = this._getUA();
-        return /tablet/i.test(UA) && !/tablet pc/i.test(UA);
+
+        return /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(UA);
     }
 
     _getUA() {

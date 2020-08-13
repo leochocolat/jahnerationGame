@@ -1,6 +1,7 @@
 import SelectPlayer from './components/SelectPlayer';
 import DeviceUtils from './utils/DeviceUtils';
 import AudioManager from './managers/AudioManager';
+import ResizeManager from './managers/ResizeManager';
 import SoundButtonComponent from './components/SoundButtonComponent';
 
 let width, height;
@@ -19,7 +20,7 @@ function setup() {
 }
 
 function checkSize() {
-    if (!DeviceUtils.isMobile() && !DeviceUtils.isTablet()) return;
+    if (!DeviceUtils.isMobile() && !DeviceUtils.isTouch()) return;
     
     width = window.innerWidth;
     height = window.innerHeight;
