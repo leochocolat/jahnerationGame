@@ -118,6 +118,7 @@ class Pixi {
     }
 
     _setupLayers() {
+        console.log(this._resources['obstaclesSpritesheet'])
         this._roadContainer = new Road(this._canvas);
         this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet']);
         this._buildingsContainer = new Buildings(this._canvas, this._resources['buildingSpritesheet']);
