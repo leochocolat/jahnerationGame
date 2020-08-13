@@ -65,9 +65,6 @@ class Cinematic {
             SizeUtils.COVER
         );
 
-        console.log(this.ui.video.videoWidth);
-        console.log(this.ui.video.videoHeight);
-
         this.ui.video.style.height = `${sizes.height}'px`;
         this.ui.video.style.width = `${sizes.width}px`;
         this.ui.video.style.left = `${sizes.x}px`;
