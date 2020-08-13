@@ -109,6 +109,7 @@ class Player {
 
     updatePositionFakePlayer(direction) {
         TweenLite.to(this.fakePlayerRect, .7, { y: (350 / 2) * direction, ease: Power3.easeOut });
+        
     }
 
     _createAnimatedSprites() {
@@ -217,12 +218,15 @@ class Player {
 
         TweenLite.to(this._canvas, 0.3, { scale: SCALEJUMP, ease: EASEJUMP });
 
+        TweenLite.to(this._shadowSprite.transform.position, .5, { x: -40 })
+
         TweenLite.to(this._spriteContainer.transform.position, .5, {
             y: -40, onComplete: () => {
                 this._isTweening = false;
                 this._playFallAnimation();
             }
         });
+        
     }
 
     _playFallAnimation() {
@@ -232,6 +236,8 @@ class Player {
         this._fallAnimation.gotoAndPlay(0);
 
         TweenLite.to(this._canvas, 0.5, { scale: SCALESTART, ease: EASEEND });
+
+        TweenLite.to(this._shadowSprite.transform.position, .35, { x: this._spriteProperties.x + this._spriteProperties.shadowTranslateX[this._playerIndex] })
 
         TweenLite.to(this._spriteContainer.transform.position, 0.4, {
             y: 0, onComplete: () => {
