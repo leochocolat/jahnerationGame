@@ -6,7 +6,7 @@ class Objects {
       this._objectsProperties = {
         x: this._canvas.width,
         y: -270,
-        scale: 0.6,
+        scale: 0.75,
         padding: this._canvas.width * 0.5,
         degrees: Math.PI * 30.75 / 180
       };
@@ -27,10 +27,8 @@ class Objects {
         this._textures.push(this._resources.textures[i]);
       }
   
-      this._buildings = [];
-  
       let limit = 3;
-  
+
       for (let i = 0; i < limit; i++) {
         let object = new PIXI.extras.AnimatedSprite(this._textures);
   
@@ -43,8 +41,7 @@ class Objects {
   
         object.position.x = this._canvas.width + this._objectsProperties.padding * i;
         object.position.y = this._objectsProperties.y;
-  
-        this._buildings.push(object);
+
         this._objectsContainer.addChildAt(object, 0);
       }
     }
