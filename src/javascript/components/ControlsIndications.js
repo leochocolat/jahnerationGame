@@ -2,6 +2,7 @@ import _ from 'underscore';
 import { TimelineLite, TweenLite, Power1, Power3, TweenMax } from 'gsap';
 
 import DeviceUtils from "../utils/DeviceUtils";
+import BrowserUtils from '../utils/BrowserUtils';
 
 class ControlsIndications {
     constructor(el) {
@@ -41,13 +42,17 @@ class ControlsIndications {
     _setupTransitionTween() {
         const TRANSLATE = 1000;
         const DURATION = 1;
-        TweenLite.set(this.ui.contentContainer, { height: 0 });
-        // TweenLite.set(this.ui.title, { height: 0 });
 
+        TweenLite.set(this.ui.contentContainer, { height: 0 });
 
         this.timelineIn = new TimelineLite({ paused: true });
 
-        this.timelineIn.fromTo(this.ui.contentContainer, DURATION, { height: 0 }, { height: '100%', autoAlpha: 1, ease: Power3.easeInOut }, 0);
+        if (BrowserUtils.isSafari()) {
+            this.timelineIn.fromTo(this.ui.contentContainer, DURATION, { height: 0 }, { height: 240, autoAlpha: 1, ease: Power3.easeInOut }, 0);
+        } else {
+            this.timelineIn.fromTo(this.ui.contentContainer, DURATION, { height: 0 }, { height: '100%', autoAlpha: 1, ease: Power3.easeInOut }, 0);
+        }
+        
         this.timelineIn.fromTo(this.ui.title, DURATION + 0.5, { y: TRANSLATE }, { y: 0, ease: Power3.easeInOut }, 0.01);
 
         this.timelineOut = new TimelineLite({ paused: true });

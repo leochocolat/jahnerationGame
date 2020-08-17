@@ -180,7 +180,6 @@ class Pixi {
         }
 
         // this._container.addChild(this._obstaclesContainer.drawFakeObstacle());
-
     }
 
     _tick() {
