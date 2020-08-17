@@ -1,9 +1,12 @@
 import { TweenLite } from "gsap";
 
 class Obstacles {
-    constructor(canvas, resources) {
+    constructor(canvas, resources, covidResource) {
         this._canvas = canvas;
         this._resources = resources;
+        this._covidResource = covidResource;
+
+        console.log(this._covidResource);
 
         this._obstacleProperties = {
             x: this._canvas.width + this._canvas.width / 2,
@@ -16,7 +19,8 @@ class Obstacles {
                 70,
                 150,
                 150,
-                70
+                70,
+                120,
             ],
             obstacleSizes: [
                 { width: 30, height: 350 / 4 },
@@ -25,8 +29,9 @@ class Obstacles {
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 80, height: 350 / 2.5 },
-                { width: 120, height: 350 / 2 },
-                { width: 50, height: 110 }
+                { width: 150, height: 120 },
+                // { width: 50, height: 110 },
+                // { width: 50, height: 110 },
             ]
         }
 
@@ -74,7 +79,25 @@ class Obstacles {
             this._sprites.push(sprite);
         }
 
-        this._spriteTest = 0;
+        //covid sprite
+        let covidSprite = new PIXI.Sprite.from(this._covidResource.texture);
+
+        let ratio = covidSprite.width / covidSprite.height;
+
+        covidSprite.height = this._obstacleProperties.sizes[this._sprites.length];
+        covidSprite.width = this._obstacleProperties.sizes[this._sprites.length] * ratio;
+
+        covidSprite.position.x = this._obstacleProperties.x;
+        covidSprite.position.y = this._obstacleProperties.y;
+
+        covidSprite.anchor.set(0.5);
+        covidSprite.rotation = this._obstacleProperties.degree;
+
+        covidSprite.alpha = 0;
+        this._sprites.push(covidSprite);
+        //covid sprite
+
+        this._spriteTest = 6;//covid
         this._currentSpriteIndex = this._spriteTest;
         this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
     }

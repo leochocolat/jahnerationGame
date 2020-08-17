@@ -50,6 +50,8 @@ class TextureLoader {
         this._textureLoader.add('obstaclesSpritesheet', this._spritesheetsUrl[3]);
         this._textureLoader.add('objectsSpritesheet', this._spritesheetsUrl[4]);
         this._textureLoader.add('shadowSpritesheet', this._spritesheetsUrl[5]);
+        //covid
+        this._textureLoader.add('covidObstacle', 'assets/sprites/covid.png');
 
         this._textureLoader.onProgress.add((loader) => this._updateProgress(loader.progress))
 

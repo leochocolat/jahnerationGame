@@ -119,7 +119,7 @@ class Pixi {
 
     _setupLayers() {
         this._roadContainer = new Road(this._canvas);
-        this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet']);
+        this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle']);
         this._buildingsContainer = new Buildings(this._canvas, this._resources['buildingSpritesheet']);
         this._objectsContainer = new Objects(this._canvas, this._resources['objectsSpritesheet']);
 
@@ -230,9 +230,9 @@ class Pixi {
     }
 
     _reloadPage() {
-        if (this._gameManager && this._deltaTime > 1500) {
-            window.location.reload()
-        }
+        // if (this._gameManager && this._deltaTime > 1500) {
+        //     window.location.reload()
+        // }
     }
 }
 
