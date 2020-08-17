@@ -6,8 +6,6 @@ class Obstacles {
         this._resources = resources;
         this._covidResource = covidResource;
 
-        console.log(this._covidResource);
-
         this._obstacleProperties = {
             x: this._canvas.width + this._canvas.width / 2,
             y: (350 / 2) / 2,
@@ -20,7 +18,7 @@ class Obstacles {
                 150,
                 150,
                 70,
-                120,
+                120,//covid
             ],
             obstacleSizes: [
                 { width: 30, height: 350 / 4 },
@@ -29,7 +27,7 @@ class Obstacles {
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 80, height: 350 / 2.5 },
-                { width: 150, height: 120 },
+                { width: 150, height: 120 },//covid
                 // { width: 50, height: 110 },
                 // { width: 50, height: 110 },
             ]
@@ -49,7 +47,9 @@ class Obstacles {
     start() {
         this._allowUpdate = true;
 
-        TweenLite.to(this._sprites[0], .5, { alpha: 1 });
+        for (let index = 0; index < this._sprites.length; index++) {
+            TweenLite.set(this._sprites[index], { alpha: 1 });
+        }
     }
 
     _createAnimatedObstacles() {

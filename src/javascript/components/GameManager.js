@@ -98,10 +98,6 @@ class GameManager {
 
         clearInterval(this.counterInterval);
 
-        for (let index = 0; index < this._obstacle._sprites.length; index++) {
-            this._obstacle._sprites[index].alpha = 1
-        }
-
         setTimeout(() => {
             this._allowHit = true;
         }, 2000);
