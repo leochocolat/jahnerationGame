@@ -176,10 +176,10 @@ class Pixi {
 
         if (this._playerContainer) {
             this._container.addChild(this._playerContainer.getRealPlayer());
-            this._container.addChild(this._playerContainer.getFakePlayer());
+            // this._container.addChild(this._playerContainer.getFakePlayer());
         }
 
-        this._container.addChild(this._obstaclesContainer.drawFakeObstacle());
+        // this._container.addChild(this._obstaclesContainer.drawFakeObstacle());
 
     }
 
