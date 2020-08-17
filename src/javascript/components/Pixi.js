@@ -13,6 +13,8 @@ import GameManager from './GameManager'
 import Buildings from './Buildings';
 import Objects from './Objects';
 
+import ObstacleManager from '../modules/ObstacleManager';
+
 const WIDTH = 1440;
 const HEIGHT = 900;
 
@@ -112,16 +114,22 @@ class Pixi {
         this._canvas.style.left = `${sizes.x}px`;
         this._canvas.style.top = `${sizes.y}px`;
         
-        if(this._obstaclesContainer) {
-            this._obstaclesContainer.resize()
+        if(this._obstaclesManager) {
+            // this._obstaclesContainer.resize()
+            this._obstaclesManager.resize();
         }
     }
 
     _setupLayers() {
         this._roadContainer = new Road(this._canvas);
-        this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle']);
+        // this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle']);
         this._buildingsContainer = new Buildings(this._canvas, this._resources['buildingSpritesheet']);
         this._objectsContainer = new Objects(this._canvas, this._resources['objectsSpritesheet']);
+
+        this._obstaclesManager = new ObstacleManager([
+            new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 0),
+            new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 1)
+        ]);
 
         this._start();
     }
@@ -137,7 +145,8 @@ class Pixi {
     }
 
     _setupGameManager() {
-        this._gameManager = new GameManager(this._stage, this._playerContainer, this._obstaclesContainer, this._deltaTime);
+        // this._gameManager = new GameManager(this._stage, this._playerContainer, this._obstaclesContainer, this._deltaTime);
+        this._gameManager = new GameManager(this._stage, this._playerContainer, this._obstaclesManager, this._deltaTime);
 
         this._dateNow = Date.now()
         this._lastTime = this._dateNow;
@@ -155,14 +164,17 @@ class Pixi {
         this._skewedContainer.removeChild(this._roadContainer.drawRoad())
 
         this._container.removeChild(this._skewedContainer);
-        this._skewedContainer.removeChild(this._obstaclesContainer.drawObstacles())
+
+        // this._skewedContainer.removeChild(this._obstaclesContainer.drawObstacles())
+        this._obstaclesManager.remove(this._skewedContainer);
 
         if (this._playerContainer) {
             this._container.removeChild(this._playerContainer.getRealPlayer());
             this._container.removeChild(this._playerContainer.getFakePlayer());
         }
 
-        this._container.removeChild(this._obstaclesContainer.drawFakeObstacle());
+        // this._container.removeChild(this._obstaclesContainer.drawFakeObstacle());
+        this._obstaclesManager.removeFakeObstacles(this._container);
     }
 
     _addChilds() {
@@ -172,7 +184,10 @@ class Pixi {
         this._skewedContainer.addChild(this._roadContainer.drawRoad());
 
         this._container.addChild(this._skewedContainer);
-        this._skewedContainer.addChild(this._obstaclesContainer.drawObstacles());
+        
+        // this._skewedContainer.addChild(this._obstaclesContainer.drawObstacles());
+        this._obstaclesManager.draw(this._skewedContainer);
+        
 
         if (this._playerContainer) {
             this._container.addChild(this._playerContainer.getRealPlayer());
@@ -180,6 +195,7 @@ class Pixi {
         }
 
         // this._container.addChild(this._obstaclesContainer.drawFakeObstacle());
+        this._obstaclesManager.drawFakeObstacles(this._container);
     }
 
     _tick() {
@@ -189,7 +205,10 @@ class Pixi {
             this._removeChilds();
             this._addChilds();
             this._roadContainer.updateRoadLinesPosition(this._gameManager.gameSpeed, this._deltaTime);
-            this._obstaclesContainer.updateObstaclesPosition(this._gameManager.gameSpeed, this._deltaTime);
+
+            this._obstaclesManager.updateObstaclesPosition(this._gameManager.gameSpeed, this._deltaTime);
+            // this._obstaclesContainer.updateObstaclesPosition(this._gameManager.gameSpeed, this._deltaTime);
+
             this._buildingsContainer.updateBuildingsPosition(this._gameManager.gameSpeed, this._deltaTime);
             this._objectsContainer.updateObjectsPosition(this._gameManager.gameSpeed, this._deltaTime);
 

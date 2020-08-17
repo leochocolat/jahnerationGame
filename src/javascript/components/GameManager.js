@@ -9,10 +9,11 @@ import emitter from '../events/emitter';
 
 
 class GameManager {
-    constructor(stage, player, obstacle, timer) {
+    constructor(stage, player, obstacleManager, timer) {
         this._stage = stage
         this._player = player
-        this._obstacle = obstacle
+        // this._obstacle = obstacle
+        this._obstaclesManager = obstacleManager
         this._timer = timer
         this._allowHit = false
         this.isGameFinished = false
@@ -93,7 +94,9 @@ class GameManager {
     _startGame() {
         this._isGameReadyToStart = true;
 
-        this._obstacle.start();
+        // this._obstacle.start();
+        this._obstaclesManager.start();
+
         this._countDown.animateOut();
 
         clearInterval(this.counterInterval);
@@ -109,7 +112,8 @@ class GameManager {
         if (!this._isGameReadyToStart) return;
 
         let playerBounds = this._player.getFakePlayerBounds(),
-            obstacleBounds = this._obstacle.getFakeObstacleBounds(),
+            // obstacleBounds = this._obstacle.getFakeObstacleBounds(),
+            obstaclesBounds = this._obstaclesManager.getFakeObstaclesBounds(),
             isJumping = this._player.isPlayerJumping();
 
         this._levelDifficulty();
@@ -119,8 +123,11 @@ class GameManager {
             this._updateTimerSeconds();
         }
 
-        if (playerBounds.x + playerBounds.width > obstacleBounds.x && playerBounds.x < obstacleBounds.x + obstacleBounds.width && playerBounds.y + playerBounds.height > obstacleBounds.y && playerBounds.y < obstacleBounds.y + obstacleBounds.height && this._allowHit && !isJumping) {
-            this._hitTest()
+        for (let i = 0; i < obstaclesBounds.length; i++) {
+            const obstacleBounds = obstaclesBounds[i];
+            if (playerBounds.x + playerBounds.width > obstacleBounds.x && playerBounds.x < obstacleBounds.x + obstacleBounds.width && playerBounds.y + playerBounds.height > obstacleBounds.y && playerBounds.y < obstacleBounds.y + obstacleBounds.height && this._allowHit && !isJumping) {
+                this._hitTest()
+            }
         }
     }
 

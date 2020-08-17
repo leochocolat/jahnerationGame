@@ -1,10 +1,11 @@
 import { TweenLite } from "gsap";
 
 class Obstacles {
-    constructor(canvas, resources, covidResource) {
+    constructor(canvas, resources, covidResource, side) {
         this._canvas = canvas;
         this._resources = resources;
         this._covidResource = covidResource;
+        this._side = side;
 
         this._obstacleProperties = {
             x: this._canvas.width + this._canvas.width / 2,
@@ -120,7 +121,7 @@ class Obstacles {
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
             this._obstaclesContainer.children[0].position.x =  Math.random() * 3000 + 3000 - window.innerWidth;
-            this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * Math.round(Math.random());
+            this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
 
             this._updateFakeObstacle();
         }
