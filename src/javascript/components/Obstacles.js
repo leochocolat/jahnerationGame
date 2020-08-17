@@ -6,6 +6,7 @@ class Obstacles {
         this._resources = resources;
         this._covidResource = covidResource;
         this._side = side;
+        this._isRandom = (typeof this._side != 'number');
 
         this._obstacleProperties = {
             x: this._canvas.width + this._canvas.width / 2,
@@ -68,7 +69,7 @@ class Obstacles {
             sprite.width = this._obstacleProperties.sizes[index] * ratio;
 
             sprite.position.x = this._obstacleProperties.x;
-            sprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
+            sprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 
             sprite.anchor.set(0.5);
             sprite.rotation = this._obstacleProperties.degree;
@@ -87,7 +88,7 @@ class Obstacles {
         covidSprite.width = this._obstacleProperties.sizes[this._sprites.length] * ratio;
 
         covidSprite.position.x = this._obstacleProperties.x;
-        covidSprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
+        covidSprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 
         covidSprite.anchor.set(0.5);
         covidSprite.rotation = this._obstacleProperties.degree;
@@ -119,7 +120,7 @@ class Obstacles {
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
             this._obstaclesContainer.children[0].position.x =  Math.random() * 3000 + 3000 - window.innerWidth;
-            this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
+            this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 
             this._updateFakeObstacle();
         }

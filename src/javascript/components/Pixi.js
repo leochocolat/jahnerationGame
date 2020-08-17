@@ -18,6 +18,8 @@ import ObstacleManager from '../modules/ObstacleManager';
 const WIDTH = 1440;
 const HEIGHT = 900;
 
+const DOUBLE_OBSTACLES = true;
+
 class Pixi {
     constructor(resources) {
         this._resources = resources;
@@ -124,10 +126,17 @@ class Pixi {
         this._buildingsContainer = new Buildings(this._canvas, this._resources['buildingSpritesheet']);
         this._objectsContainer = new Objects(this._canvas, this._resources['objectsSpritesheet']);
 
-        this._obstaclesManager = new ObstacleManager([
-            new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 0),
-            new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 1)
-        ]);
+        if (DOUBLE_OBSTACLES) {
+            this._obstaclesManager = new ObstacleManager([
+                new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 0),
+                new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle'], 1)
+            ]);
+        } else {
+            this._obstaclesManager = new ObstacleManager([
+                new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle']),
+            ]);
+        }
+
 
         this._start();
     }
