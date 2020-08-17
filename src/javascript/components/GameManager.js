@@ -7,6 +7,8 @@ import ControlsIndications from './ControlsIndications';
 import { TweenLite } from 'gsap';
 import emitter from '../events/emitter';
 
+// sessionStorage.getItem('intro')
+// sessionStorage.setItem('intro', true)
 
 class GameManager {
     constructor(stage, player, obstacle, timer) {
@@ -40,7 +42,18 @@ class GameManager {
         this._timer = new Timer();
         this._timer.resetTimer();
 
-        this._setupContolsTutorial();
+        if (sessionStorage.getItem('tuto')) {
+            this._setupCountDown();
+            this._startCountdown();
+            document.querySelector('.js-controlsIndications').remove();
+            this._allowTutorial = false;
+        } else {
+            sessionStorage.setItem('tuto', true);
+            this._setupCountDown();
+            this._setupContolsTutorial();
+            this._allowTutorial = true;
+        }
+
 
         //debug form
         // setTimeout(() => {
@@ -54,10 +67,13 @@ class GameManager {
         // }, 2000)
     }
 
-    _setupContolsTutorial() {
+    _setupCountDown() {
         this._countDown = new CountDown(document.querySelector('.js-countdown'));
-        this._controlsDown = new ControlsIndications(document.querySelector('.js-controlsIndications'));
         this._countDown.setupTweens();
+    }
+
+    _setupContolsTutorial() {
+        this._controlsDown = new ControlsIndications(document.querySelector('.js-controlsIndications'));
 
         setTimeout(() => {
             this._controlsDown.transitionIn();
@@ -205,6 +221,8 @@ class GameManager {
     }
 
     _keyPressedAnimation() {
+        if (!this._controlsDown) return;
+
         if (this.keyPressed.left && this.keyPressed.right && this._allowArrowKey) {
             this._allowArrowKey = false;
             setTimeout(() => {
@@ -225,6 +243,8 @@ class GameManager {
     }
 
     _keyDownHandler(event) {
+        if (!this._controlsDown) return;
+
         switch (event.code) {
             case 'Space':
             case 'ArrowUp':
@@ -259,10 +279,13 @@ class GameManager {
 
                 break;
         }
+
         this._keyPressedAnimation();
     }
 
     _keyUpHandler(e) {
+        if (!this._controlsDown) return;
+
         switch (e.code) {
             case 'Space':
             case 'ArrowUp':
@@ -280,6 +303,8 @@ class GameManager {
     }
 
     _swipeHandler(swipeEvent) {
+        if (!this._controlsDown) return;
+
         switch (swipeEvent.type) {
             case 'swipeup':
             case 'tap':
@@ -316,6 +341,7 @@ class GameManager {
                 }
                 break;
         }
+        
         this._keyPressedAnimation();
     }
 }
