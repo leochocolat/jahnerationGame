@@ -29,8 +29,6 @@ class Obstacles {
                 { width: 120, height: 350 / 3 },
                 { width: 80, height: 350 / 2.5 },
                 { width: 150, height: 120 },//covid
-                // { width: 50, height: 110 },
-                // { width: 50, height: 110 },
             ]
         }
 
@@ -70,7 +68,7 @@ class Obstacles {
             sprite.width = this._obstacleProperties.sizes[index] * ratio;
 
             sprite.position.x = this._obstacleProperties.x;
-            sprite.position.y = this._obstacleProperties.y;
+            sprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
 
             sprite.anchor.set(0.5);
             sprite.rotation = this._obstacleProperties.degree;
@@ -89,7 +87,7 @@ class Obstacles {
         covidSprite.width = this._obstacleProperties.sizes[this._sprites.length] * ratio;
 
         covidSprite.position.x = this._obstacleProperties.x;
-        covidSprite.position.y = this._obstacleProperties.y;
+        covidSprite.position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * this._side;
 
         covidSprite.anchor.set(0.5);
         covidSprite.rotation = this._obstacleProperties.degree;
