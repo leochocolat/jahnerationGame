@@ -115,14 +115,12 @@ class Pixi {
         this._canvas.style.top = `${sizes.y}px`;
         
         if(this._obstaclesManager) {
-            // this._obstaclesContainer.resize()
             this._obstaclesManager.resize();
         }
     }
 
     _setupLayers() {
         this._roadContainer = new Road(this._canvas);
-        // this._obstaclesContainer = new Obstacles(this._canvas, this._resources['obstaclesSpritesheet'], this._resources['covidObstacle']);
         this._buildingsContainer = new Buildings(this._canvas, this._resources['buildingSpritesheet']);
         this._objectsContainer = new Objects(this._canvas, this._resources['objectsSpritesheet']);
 
@@ -145,7 +143,6 @@ class Pixi {
     }
 
     _setupGameManager() {
-        // this._gameManager = new GameManager(this._stage, this._playerContainer, this._obstaclesContainer, this._deltaTime);
         this._gameManager = new GameManager(this._stage, this._playerContainer, this._obstaclesManager, this._deltaTime);
 
         this._dateNow = Date.now()
@@ -165,7 +162,6 @@ class Pixi {
 
         this._container.removeChild(this._skewedContainer);
 
-        // this._skewedContainer.removeChild(this._obstaclesContainer.drawObstacles())
         this._obstaclesManager.remove(this._skewedContainer);
 
         if (this._playerContainer) {
@@ -173,7 +169,6 @@ class Pixi {
             this._container.removeChild(this._playerContainer.getFakePlayer());
         }
 
-        // this._container.removeChild(this._obstaclesContainer.drawFakeObstacle());
         this._obstaclesManager.removeFakeObstacles(this._container);
     }
 
@@ -185,16 +180,12 @@ class Pixi {
 
         this._container.addChild(this._skewedContainer);
         
-        // this._skewedContainer.addChild(this._obstaclesContainer.drawObstacles());
-        this._obstaclesManager.draw(this._skewedContainer);
-        
+        this._obstaclesManager.draw(this._skewedContainer);        
 
         if (this._playerContainer) {
             this._container.addChild(this._playerContainer.getRealPlayer());
-            // this._container.addChild(this._playerContainer.getFakePlayer());
         }
 
-        // this._container.addChild(this._obstaclesContainer.drawFakeObstacle());
         this._obstaclesManager.drawFakeObstacles(this._container);
     }
 
@@ -207,7 +198,6 @@ class Pixi {
             this._roadContainer.updateRoadLinesPosition(this._gameManager.gameSpeed, this._deltaTime);
 
             this._obstaclesManager.updateObstaclesPosition(this._gameManager.gameSpeed, this._deltaTime);
-            // this._obstaclesContainer.updateObstaclesPosition(this._gameManager.gameSpeed, this._deltaTime);
 
             this._buildingsContainer.updateBuildingsPosition(this._gameManager.gameSpeed, this._deltaTime);
             this._objectsContainer.updateObjectsPosition(this._gameManager.gameSpeed, this._deltaTime);

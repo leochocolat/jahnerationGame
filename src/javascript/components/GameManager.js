@@ -12,7 +12,6 @@ class GameManager {
     constructor(stage, player, obstacleManager, timer) {
         this._stage = stage
         this._player = player
-        // this._obstacle = obstacle
         this._obstaclesManager = obstacleManager
         this._timer = timer
         this._allowHit = false
@@ -94,7 +93,6 @@ class GameManager {
     _startGame() {
         this._isGameReadyToStart = true;
 
-        // this._obstacle.start();
         this._obstaclesManager.start();
 
         this._countDown.animateOut();
@@ -112,7 +110,6 @@ class GameManager {
         if (!this._isGameReadyToStart) return;
 
         let playerBounds = this._player.getFakePlayerBounds(),
-            // obstacleBounds = this._obstacle.getFakeObstacleBounds(),
             obstaclesBounds = this._obstaclesManager.getFakeObstaclesBounds(),
             isJumping = this._player.isPlayerJumping();
 

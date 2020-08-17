@@ -1,12 +1,6 @@
 class ObstacleManager {
     constructor(obstaclesContainers) {
         this._obstaclesContainers = obstaclesContainers;
-
-        this._setup();
-    }
-
-    _setup() {
-
     }
 
     getFakeObstaclesBounds() {
