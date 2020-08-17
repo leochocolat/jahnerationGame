@@ -186,7 +186,7 @@ class Pixi {
             this._container.addChild(this._playerContainer.getRealPlayer());
         }
 
-        this._obstaclesManager.drawFakeObstacles(this._container);
+        // this._obstaclesManager.drawFakeObstacles(this._container);
     }
 
     _tick() {
