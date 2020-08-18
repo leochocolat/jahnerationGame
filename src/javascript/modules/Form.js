@@ -3,7 +3,7 @@ import bindAll from '../utils/bindAll';
 import SplitText from '../vendors/SplitText';
 import FormValidationComponent from '../components/FormValidationComponent';
 
-const ACTIONURL = 'https://leomouraire.us5.list-manage.com/subscribe/post?u=865e089434b6e7d78112f0878&amp;id=4a0729be21';
+const ACTIONURL = 'https://leomouraire.us5.list-manage.com/subscribe/post?u=865e089434b6e7d78112f0878&id=4a0729be21';
 
 class Form {
     constructor(el) {
@@ -34,7 +34,7 @@ class Form {
     }
 
     _setup() {
-        this.form.action = ACTIONURL;
+        // this.form.setAttribute('action', ACTIONURL);
         this._setupSplitText();
         this._setupEventListener();
     }
