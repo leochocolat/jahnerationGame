@@ -6,6 +6,7 @@ import SoundButtonComponent from './components/SoundButtonComponent';
 
 let width, height;
 let orientationMessage = document.querySelector('.js-orientation-message');
+let links = document.querySelectorAll('[data-link]');
 
 document.addEventListener('DOMContentLoaded', () => {
     setup();
@@ -46,7 +47,16 @@ function removeOrientationMessage() {
 
 function setupEventListeners() {
     window.addEventListener('orientationchange', orientationchangeHandler);
+    
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', clickLinkHandler);
+    }
 }
+
+function clickLinkHandler() {
+    location.reload();
+}
+
 
 function orientationchangeHandler(e) {
     window.addEventListener('resize', resizeOrientationHandler);

@@ -32,9 +32,9 @@ class SelectPlayer {
         let hyp = Math.sqrt(width * width + height * height);
 
         this._ui.backgroundTransitionWhite.style.width = `${hyp}px`;
-        this._ui.backgroundTransitionWhite.style.height = `${hyp}px`;
+        this._ui.backgroundTransitionWhite.style.height = `${hyp * 2}px`;
         this._ui.backgroundTransitionRed.style.width = `${hyp}px`;
-        this._ui.backgroundTransitionRed.style.height = `${hyp}px`;
+        this._ui.backgroundTransitionRed.style.height = `${hyp * 2}px`;
     }
 
     _selectPlayer(index) {

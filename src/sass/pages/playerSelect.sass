@@ -113,6 +113,10 @@
     &:hover
         .player__name-content
             transform: translateY(-100%)
+
+            &:before
+                transition: opacity 0.05s ease-in-out 0s
+                opacity: 1
             
 
 .player__first
@@ -174,6 +178,9 @@
         position: absolute
         left: 0
         top: 100%
+
+        opacity: 0
+        transition: opacity 0.05s ease-in-out 0.2s
 
 .player__head
     position: absolute

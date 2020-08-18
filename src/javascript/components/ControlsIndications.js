@@ -126,10 +126,10 @@ class ControlsIndications {
         if(DeviceUtils.isMobile() || DeviceUtils.isTablet() || DeviceUtils.isTouch()) {
             this.ui.controlText.innerHTML = "Swipe";
             this.ui.controlJumpText.innerHTML = "Swipe"
-            this.ui.controlKey.innerHTML = "se déplacer"
+            this.ui.controlKey.innerHTML = "se déplacer sur les cotés"
         } else {
             this.ui.controlText.innerHTML = "Appuyer sur les flèches";
-            this.ui.controlKey.innerHTML = "se déplacer"
+            this.ui.controlKey.innerHTML = "se déplacer";
             // this.ui.controlKey.innerHTML = ""
         }
     }

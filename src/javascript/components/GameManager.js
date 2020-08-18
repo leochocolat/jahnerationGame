@@ -52,6 +52,11 @@ class GameManager {
             this._allowTutorial = true;
         }
 
+        //debug controls indications
+        // this._setupCountDown();
+        // this._setupContolsTutorial();
+        // this._allowTutorial = true;
+
 
         //debug form
         // setTimeout(() => {
