@@ -59,10 +59,10 @@ class GameManager {
 
 
         //debug form
-        setTimeout(() => {
-            this.form = new Form(document.querySelector('.js-form-component'));
-            this.form.transitionIn();
-        }, 1000)
+        // setTimeout(() => {
+        //     this.form = new Form(document.querySelector('.js-form-component'));
+        //     this.form.transitionIn();
+        // }, 1000)
 
         //debug endgame
         // setTimeout(() => {
