@@ -51,7 +51,7 @@ class Objects {
         this._objectsContainer.children[i].transform.position.x += - speed * deltaTime;
         if (this._objectsContainer.children[i].position.x < 0) {
             this._objectsContainer.children[i].gotoAndStop(Math.round(Math.random() * this._textures.length));
-            this._objectsContainer.children[i].transform.position.x = this._canvas.width * 2
+            this._objectsContainer.children[i].transform.position.x = Math.floor(Math.random() * window.innerWidth) + window.innerWidth * 3
         }
       }
     }

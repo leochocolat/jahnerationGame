@@ -121,7 +121,7 @@ class Obstacles {
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
 
-            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width) + window.innerWidth * 3)
+            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * 3
             this._obstaclesContainer.children[0].position.x = randomXPosition;
             console.log(randomXPosition)
             this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
