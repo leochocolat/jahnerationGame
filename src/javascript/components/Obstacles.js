@@ -32,7 +32,7 @@ class Obstacles {
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 80, height: 350 / 2.5 },
-                { width: 150, height: 120 },//covid
+                { width: 150, height: 120 / 1.5 },//covid
             ]
         }
 
@@ -77,7 +77,7 @@ class Obstacles {
             sprite.anchor.set(0.5);
             sprite.rotation = this._obstacleProperties.degree;
 
-            sprite.alpha = 0;
+            // sprite.alpha = 1;
 
             this._sprites.push(sprite);
         }
@@ -96,7 +96,7 @@ class Obstacles {
         covidSprite.anchor.set(0.5);
         covidSprite.rotation = this._obstacleProperties.degree;
 
-        covidSprite.alpha = 0;
+        covidSprite.alpha = 1;
         this._sprites.push(covidSprite);
         //covid sprite
 
@@ -123,9 +123,9 @@ class Obstacles {
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
 
-            let paddingValue = DeviceUtils.isMobile() || DeviceUtils.isTouch() ? 3 : 1.5
+            let paddingValue = DeviceUtils.isMobile() || DeviceUtils.isTouch() ? 3 : 1.75
             let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * paddingValue
-            
+
             this._obstaclesContainer.children[0].position.x = randomXPosition;
             this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 
@@ -142,8 +142,9 @@ class Obstacles {
     }
 
     _createFakeObstacle() {
+        console.log('fakeee')
         this.obstacleRect = new PIXI.Graphics();
-        this.obstacleRect.alpha = 1;
+        // this.obstacleRect.alpha = 1;
         this.obstacleRect.drawRect(0, 0, this._obstacleProperties.obstacleSizes[this._currentSpriteIndex].width, this._obstacleProperties.obstacleSizes[this._currentSpriteIndex].height);
         this.obstacleRect.position.x = this._obstaclesContainer.children[0].position.x;
         this.obstacleRect.position.y = this._obstaclesContainer.children[0].position.y;
