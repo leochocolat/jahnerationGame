@@ -1,5 +1,7 @@
 import { TweenLite } from "gsap";
 import { random } from "underscore";
+import DeviceUtils from '../utils/DeviceUtils';
+
 
 class Obstacles {
     constructor(canvas, resources, covidResource, side) {
@@ -117,11 +119,13 @@ class Obstacles {
 
         if (this._obstaclesContainer.children[0].position.x < 0) {
             this._obstaclesContainer.removeChildAt(0);
-
+            
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
 
-            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * 3
+            let paddingValue = DeviceUtils.isMobile() || DeviceUtils.isTouch() ? 3 : 1.5
+            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * paddingValue
+            
             this._obstaclesContainer.children[0].position.x = randomXPosition;
             this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 
