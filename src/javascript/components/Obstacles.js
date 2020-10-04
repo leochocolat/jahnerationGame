@@ -18,7 +18,7 @@ class Obstacles {
             degree: Math.PI * 30.75 / 180,
             sizes: [
                 80,
-                320,
+                360,
                 70,
                 150,
                 150,
@@ -27,7 +27,7 @@ class Obstacles {
             ],
             obstacleSizes: [
                 { width: 30, height: 350 / 4 },
-                { width: 500, height: 350 / 3.5 },
+                { width: 800, height: 350 / 3.5 },
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
@@ -142,9 +142,8 @@ class Obstacles {
     }
 
     _createFakeObstacle() {
-        console.log('fakeee')
         this.obstacleRect = new PIXI.Graphics();
-        // this.obstacleRect.alpha = 1;
+        this.obstacleRect.alpha = 1;
         this.obstacleRect.drawRect(0, 0, this._obstacleProperties.obstacleSizes[this._currentSpriteIndex].width, this._obstacleProperties.obstacleSizes[this._currentSpriteIndex].height);
         this.obstacleRect.position.x = this._obstaclesContainer.children[0].position.x;
         this.obstacleRect.position.y = this._obstaclesContainer.children[0].position.y;
