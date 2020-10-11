@@ -24,7 +24,8 @@ class Form {
             olympia: document.querySelector('.js-olympia-logo'),
             inputs: document.querySelectorAll('.js-input'),
             submit: document.querySelector('.js-submit'),
-            legal: document.querySelector('.js-legal')
+            legal: document.querySelector('.js-legal'),
+            date: document.querySelector('.js-form-date')
         } 
 
         this.components = {
@@ -61,8 +62,10 @@ class Form {
         timelineIntro.staggerFromTo(this.ui.inputs, 1, { y: 100, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: Power3.easeOut }, 0.1, 0.5);
         timelineIntro.fromTo(this.ui.submit, 1.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.8);
         timelineIntro.fromTo(this.ui.legal, 1.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.8);
+        timelineIntro.fromTo(this.ui.date, 1.5, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.8);
         timelineIntro.from(this.ui.playerLeft, 1, { x: '-100%', ease: Power3.easeOut }, 0.3);
         timelineIntro.from(this.ui.playerRight, 1, { x: '100%', ease: Power3.easeOut }, 0.4);
+        
     }
 
     transitionOut() {

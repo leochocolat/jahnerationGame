@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import { TweenLite, Power3, TweenMax } from 'gsap';
 import Hammer from 'hammerjs';
+import DeviceUtils from '../utils/DeviceUtils'
 
 const SCALESTART = 1;
 const SCALEPRESS = 1.02;
@@ -204,7 +205,10 @@ class Player {
         this._addChild(this._preJumpAnimation);
         this._preJumpAnimation.gotoAndPlay(0);
 
-        TweenLite.to(this._canvas, 0.3, { scale: SCALEPRESS, ease: EASEPRESS });
+        // TweenLite.to(this._canvas, 0.3, { scale: SCALEPRESS, ease: EASEPRESS });
+        TweenLite.to(this.ui.gameInfos, 0.3, { border: `${DeviceUtils.isMobile() ? "10px" :"20px"} solid #ce3739`, ease: EASEPRESS });
+
+
     }
 
     _playJumpAnimation() {
@@ -217,6 +221,8 @@ class Player {
         this._jumpAnimation.gotoAndPlay(0);
 
         TweenLite.to(this._canvas, 0.3, { scale: SCALEJUMP, ease: EASEJUMP });
+        TweenLite.to(this.ui.gameInfos, 0.3, { border: `${DeviceUtils.isMobile() ? "20px" :"35px"} solid #ce3739`, ease: EASEPRESS });
+
 
         TweenLite.to(this._shadowSprite.transform.position, .5, { x: -40 })
 
@@ -236,6 +242,7 @@ class Player {
         this._fallAnimation.gotoAndPlay(0);
 
         TweenLite.to(this._canvas, 0.5, { scale: SCALESTART, ease: EASEEND });
+        TweenLite.to(this.ui.gameInfos, 0.3, { border: "12px solid #ce3739", ease: EASEPRESS });
 
         TweenLite.to(this._shadowSprite.transform.position, .35, { x: this._spriteProperties.x + this._spriteProperties.shadowTranslateX[this._playerIndex] })
 
