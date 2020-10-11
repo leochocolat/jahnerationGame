@@ -16,8 +16,8 @@ class TextureLoader {
             'assets/spriteheets/bikeSpritesheet.json',
             'assets/spriteheets/skateSpritesheet.json',
             'assets/spriteheets/buildingSpritesheet.json',
-            'assets/spriteheets/obstackesSpritesheets1.json',
-            'assets/spriteheets/objectsSpritesheets.json',
+            'assets/spriteheets/obstaclesSpritesheet.json',
+            'assets/spriteheets/objectsSpritesheet.json',
             'assets/spriteheets/shadowSpritesheet.json'
         ]
 
