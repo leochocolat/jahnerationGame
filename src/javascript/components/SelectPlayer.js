@@ -42,7 +42,7 @@ class SelectPlayer {
             this.clicked = true;
             this._textureLoader.loadedPlayerTexture(index);
             let playerHead = this._ui.players[index].querySelector(".player__head");
-            this._ui.playerTimerHead.src = `assets/images/player${index + 1}-head-progressBar.png`;
+            this._ui.playerTimerHead.src = `assets/images/player${index + 1}-head-progress-bar.png`;
 
             let timeline = new TimelineLite();
 
