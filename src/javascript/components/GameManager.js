@@ -52,19 +52,21 @@ class GameManager {
             this._allowTutorial = true;
         }
 
+
+
         //debug controls indications
         // this._setupCountDown();
         // this._setupContolsTutorial();
         // this._allowTutorial = true;
 
 
-        //debug form
+        // debug form
         // setTimeout(() => {
         //     this.form = new Form(document.querySelector('.js-form-component'));
         //     this.form.transitionIn();
         // }, 1000)
 
-        //debug endgame
+        // debug endgame
         // setTimeout(() => {
         //     this._endGame()
         // }, 2000)

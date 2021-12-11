@@ -1,5 +1,7 @@
 import { TweenLite } from "gsap";
 import { random } from "underscore";
+import DeviceUtils from '../utils/DeviceUtils';
+
 
 class Obstacles {
     constructor(canvas, resources, covidResource, side) {
@@ -16,7 +18,7 @@ class Obstacles {
             degree: Math.PI * 30.75 / 180,
             sizes: [
                 80,
-                320,
+                360,
                 70,
                 150,
                 150,
@@ -25,12 +27,12 @@ class Obstacles {
             ],
             obstacleSizes: [
                 { width: 30, height: 350 / 4 },
-                { width: 500, height: 350 / 3.5 },
+                { width: 800, height: 350 / 3.5 },
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 120, height: 350 / 3 },
                 { width: 80, height: 350 / 2.5 },
-                { width: 150, height: 120 },//covid
+                { width: 150, height: 120 / 1.5 },//covid
             ]
         }
 
@@ -75,7 +77,7 @@ class Obstacles {
             sprite.anchor.set(0.5);
             sprite.rotation = this._obstacleProperties.degree;
 
-            sprite.alpha = 0;
+            // sprite.alpha = 1;
 
             this._sprites.push(sprite);
         }
@@ -94,7 +96,7 @@ class Obstacles {
         covidSprite.anchor.set(0.5);
         covidSprite.rotation = this._obstacleProperties.degree;
 
-        covidSprite.alpha = 0;
+        covidSprite.alpha = 1;
         this._sprites.push(covidSprite);
         //covid sprite
 
@@ -117,11 +119,13 @@ class Obstacles {
 
         if (this._obstaclesContainer.children[0].position.x < 0) {
             this._obstaclesContainer.removeChildAt(0);
-
+            
             // this._obstaclesContainer.addChild(this._sprites[this._spriteTest]);
             this._obstaclesContainer.addChild(this._randomSprite(this._sprites));
 
-            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * 3
+            let paddingValue = DeviceUtils.isMobile() || DeviceUtils.isTouch() ? 3 : 1.75
+            let randomXPosition = Math.floor(Math.random() * (window.innerWidth + this._obstaclesContainer.children[0].width)) + window.innerWidth * paddingValue
+
             this._obstaclesContainer.children[0].position.x = randomXPosition;
             this._obstaclesContainer.children[0].position.y = this._obstacleProperties.y + (this._obstacleProperties.y * 2) * (this._isRandom ? Math.round(Math.random()) : this._side);
 

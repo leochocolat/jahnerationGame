@@ -9,6 +9,8 @@ class FormValidationComponent {
             micros: this.el.querySelectorAll('.js-microphone'),
             buttons: this.el.querySelectorAll('.js-validation-button'),
             text: this.el.querySelector('.js-validation-text'),
+            socialText: this.el.querySelector('.js-social-text'),
+            credits: this.el.querySelectorAll('.js-credits span')
         }
 
         this._setup();
@@ -24,7 +26,10 @@ class FormValidationComponent {
         timeline.staggerFromTo(this.ui.players, 1, { autoAlpha: 0, y: '-40%' }, { autoAlpha: 1, y: '-50%', ease: Power3.easeOut }, 0.1, 0);
         timeline.staggerFromTo(this.ui.micros, 1, { autoAlpha: 0, y: '-40%' }, { autoAlpha: 1, y: '-50%', ease: Power3.easeOut }, 0.1, 0.2);
         timeline.fromTo(this.ui.text, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeInOut }, 0);
+        timeline.fromTo(this.ui.socialText, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeInOut }, 0);
         timeline.staggerFromTo(this.ui.buttons, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.05, 0.2);
+        timeline.staggerFromTo(this.ui.credits, 1, { autoAlpha: 0 }, { autoAlpha: 1, ease: Power3.easeOut }, 0.05, 0.3);
+
     }
 
     transitionOut() {
