@@ -64,9 +64,9 @@ class GameManager {
         // }, 1000)
 
         // debug endgame
-        setTimeout(() => {
-            this._endGame()
-        }, 2000)
+        // setTimeout(() => {
+        //     this._endGame()
+        // }, 2000)
     }
 
     _setupCountDown() {
