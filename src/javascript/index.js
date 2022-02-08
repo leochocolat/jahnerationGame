@@ -52,7 +52,7 @@ function removeOrientationMessage() {
 
 function setupEventListeners() {
     // window.addEventListener('orientationchange', orientationchangeHandler);
-    window.addEventListener('resize', resizeOrientationHandler);
+    ResizeManager.addEventListener('resize:end', resizeOrientationHandler);
     webviewButton.addEventListener('click', clickWebviewLinkHandler);
     
     for (let i = 0; i < links.length; i++) {
@@ -69,7 +69,7 @@ function clickWebviewLinkHandler() {
 }
 
 // function orientationchangeHandler(e) {
-//     window.addEventListener('resize', resizeOrientationHandler);
+//     ResizeManager.addEventListener('resize:end', resizeOrientationHandler);
 // }
 
 function resizeOrientationHandler() {

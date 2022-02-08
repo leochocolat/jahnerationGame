@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import TextureLoader from '../modules/TextureLoader'
 import { TimelineLite, Power4 } from 'gsap';
+import ResizeManager from '../managers/ResizeManager';
 
 class SelectPlayer {
     constructor() {
@@ -58,8 +59,9 @@ class SelectPlayer {
             this._ui.players[index].addEventListener('click', () => { this._selectPlayer(index) });
         }
 
-        window.addEventListener('resize', () => {
-            setTimeout(() => {
+        ResizeManager.addEventListener('resize:end', () => {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
                 this._initStyle()
             }, 1000);
         });

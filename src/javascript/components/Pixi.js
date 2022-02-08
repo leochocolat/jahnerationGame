@@ -13,6 +13,8 @@ import GameManager from './GameManager'
 import Buildings from './Buildings';
 import Objects from './Objects';
 
+import ResizeManager from '../managers/ResizeManager';
+
 import ObstacleManager from '../modules/ObstacleManager';
 
 const WIDTH = 1440;
@@ -235,7 +237,7 @@ class Pixi {
 
     _setupEventListeners() {
         TweenLite.ticker.addEventListener('tick', this._tickHandler);
-        window.addEventListener('resize', this._resizeHandler);
+        ResizeManager.addEventListener('resize:end', this._resizeHandler);
     }
 
     _tickHandler() {

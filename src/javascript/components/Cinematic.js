@@ -1,6 +1,7 @@
 import bindAll from '../utils/bindAll';
 import SizeUtils from '../utils/SizeUtils';
 import { TimelineLite, Power4, TweenLite } from 'gsap';
+import ResizeManager from '../managers/ResizeManager';
 
 class Cinematic {
     constructor() {
@@ -72,7 +73,7 @@ class Cinematic {
     }
 
     _setupEventListeners() {
-        window.addEventListener('resize', this._resizeHandler)
+        ResizeManager.addEventListener('resize:end', this._resizeHandler)
     }
 
     _resizeHandler() {
