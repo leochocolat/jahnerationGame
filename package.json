@@ -45,7 +45,7 @@
     "pixi-layers": "^0.2.2",
     "pixi.js": "^4.8.5",
     "stats.js": "^0.17.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "main": "gulpfile.js",
   "repository": {
