@@ -49,7 +49,6 @@ class Cinematic {
     }
 
     _setup() {
-        console.log('hello')
         this._resize();
         this._setupEventListeners();
     }

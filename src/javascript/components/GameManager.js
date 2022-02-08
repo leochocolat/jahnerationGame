@@ -52,13 +52,10 @@ class GameManager {
             this._allowTutorial = true;
         }
 
-
-
         //debug controls indications
         // this._setupCountDown();
         // this._setupContolsTutorial();
         // this._allowTutorial = true;
-
 
         // debug form
         // setTimeout(() => {
@@ -67,9 +64,9 @@ class GameManager {
         // }, 1000)
 
         // debug endgame
-        // setTimeout(() => {
-        //     this._endGame()
-        // }, 2000)
+        setTimeout(() => {
+            this._endGame()
+        }, 2000)
     }
 
     _setupCountDown() {
@@ -203,10 +200,15 @@ class GameManager {
         this._cinematic.transitionIn();
 
         setTimeout(() => {
+            emitter.emit('stop:ambiance', {}, { passive: true });
+
+            setTimeout(() => {
+                emitter.emit('play:sound', { name: 'win' }, { passive: true });
+            }, 500);
+
             this._cinematic.play().then(() => {
                 this.form = new Form(document.querySelector('.js-form-component'));
                 this.form.transitionIn();
-                emitter.emit('stop:ambiance', {}, { passive: true });
 
                 setTimeout(() => {
                     this._cinematic.transitionOut();

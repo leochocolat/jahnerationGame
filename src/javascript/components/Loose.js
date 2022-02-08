@@ -1,5 +1,6 @@
 import _ from 'underscore';
 import { TimelineLite, Power0, TweenMax } from "gsap";
+import emitter from '../events/emitter';
 
 class Loose {
     constructor(el) {
@@ -51,9 +52,12 @@ class Loose {
     animate() {
         this.timeline.restart();
         this.timeline.play();
+        emitter.emit('stop:ambiance', {}, { passive: true });
+        emitter.emit('play:sound', { name: 'loose' }, { passive: true });
     }
     
     _onCompleteHandler() {
+        emitter.emit('play:ambiance', {}, { passive: true });
     }
     
     
