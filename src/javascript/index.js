@@ -7,13 +7,18 @@ import SoundButtonComponent from './components/SoundButtonComponent';
 let width, height;
 let orientationMessage = document.querySelector('.js-orientation-message');
 let links = document.querySelectorAll('[data-link]');
+let selectPlayer;
+
+let webviewButton = document.querySelector('.js-webview-button');
+// let log = document.querySelector('.js-log');
+// let i = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     setup();
 });
 
 function setup() {
-    new SelectPlayer();
+    selectPlayer = new SelectPlayer();
     new SoundButtonComponent(document.querySelector('.js-sound-button'))
     
     checkSize();
@@ -21,7 +26,7 @@ function setup() {
 }
 
 function checkSize() {
-    if (!DeviceUtils.isMobile() && !DeviceUtils.isTouch()) return;
+    // if (!DeviceUtils.isMobile() && !DeviceUtils.isTouch()) return;
     
     width = window.innerWidth;
     height = window.innerHeight;
@@ -46,7 +51,9 @@ function removeOrientationMessage() {
 }
 
 function setupEventListeners() {
-    window.addEventListener('orientationchange', orientationchangeHandler);
+    // window.addEventListener('orientationchange', orientationchangeHandler);
+    window.addEventListener('resize', resizeOrientationHandler);
+    webviewButton.addEventListener('click', clickWebviewLinkHandler);
     
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener('click', clickLinkHandler);
@@ -57,12 +64,15 @@ function clickLinkHandler() {
     location.reload();
 }
 
+function clickWebviewLinkHandler() {
 
-function orientationchangeHandler(e) {
-    window.addEventListener('resize', resizeOrientationHandler);
 }
+
+// function orientationchangeHandler(e) {
+//     window.addEventListener('resize', resizeOrientationHandler);
+// }
 
 function resizeOrientationHandler() {
     checkSize();
-    window.removeEventListener('resize', resizeOrientationHandler);
+    // window.removeEventListener('resize', resizeOrientationHandler);
 }

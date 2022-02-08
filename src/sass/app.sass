@@ -1,14 +1,13 @@
-@import 'core/reset';
-@import 'core/base';
-@import 'core/variables';
-@import 'core/fonts';
-@import 'core/zIndex';
+@import 'core/reset'
+@import 'core/base'
+@import 'core/variables'
+@import 'core/fonts'
+@import 'core/zIndex'
 
-@import 'pages/playerSelect';
-@import 'pages/home';
-@import 'pages/form';
-@import 'pages/legal';
-
+@import 'pages/playerSelect'
+@import 'pages/home'
+@import 'pages/form'
+@import 'pages/legal'
 
 @import 'sections/section-mobile-orientation'
 @import 'sections/section-cinematic'
@@ -16,10 +15,35 @@
 
 @import 'partials/canvas'
 @import 'partials/timer'
-@import 'partials/section-looser';
-@import 'partials/countdown';
-@import 'partials/controlsIndications';
+@import 'partials/section-looser'
+@import 'partials/countdown'
+@import 'partials/controlsIndications'
 @import 'partials/loader'
 @import 'partials/fullscreen-button'
 @import 'partials/sound-button'
 @import 'partials/game-level'
+
+.log
+    position: fixed
+    left: 0
+    top: 0
+
+    z-index: 1000000
+
+    font-size: 100
+
+    background: blue
+
+.webview
+    display: none
+
+    position: fixed
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+
+    z-index: 1000000
+
+    background: blue
+    color: white

@@ -57,7 +57,12 @@ class SelectPlayer {
         for (let index = 0; index < this._ui.players.length; index++) {
             this._ui.players[index].addEventListener('click', () => { this._selectPlayer(index) });
         }
-        window.addEventListener('resize', () => { this._initStyle() });
+
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                this._initStyle()
+            }, 1000);
+        });
     }
 }
 export default SelectPlayer;
