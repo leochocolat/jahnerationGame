@@ -13,9 +13,9 @@ class AudioManager {
     }
 
     _setup() {
-        if (DeviceUtils.isMobile() || DeviceUtils.isTouch()) {
-            Howler.volume(0);
-        }
+        // if (DeviceUtils.isMobile() || DeviceUtils.isTouch()) {
+        //     Howler.volume(0);
+        // }
 
         this._setupSounds();
         this._loadAudios();
