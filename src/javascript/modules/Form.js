@@ -6,7 +6,8 @@ import FormValidationComponent from '../components/FormValidationComponent';
 // Staging
 //const ACTIONURL = 'https://leomouraire.us5.list-manage.com/subscribe/post?u=865e089434b6e7d78112f0878&id=4a0729be21';
 // Production
-const ACTIONURL = 'https://ovastand.us14.list-manage.com/subscribe/post?u=02a7072f1f0bd096425da816c&amp;id=ab65873249';
+// const ACTIONURL_HTML = `https://ovastand.us14.list-manage.com/subscribe/post?u=02a7072f1f0bd096425da816c&amp;id=ab65873249`;
+// const ACTIONURL = `https://ovastand.us14.list-manage.com/subscribe/post?u=02a7072f1f0bd096425da816c&id=ab65873249`;
 
 class Form {
     constructor(el) {
@@ -40,6 +41,7 @@ class Form {
 
     _setup() {
         // this.form.setAttribute('action', ACTIONURL);
+        // this.form.action = ACTIONURL;
         this._setupSplitText();
         this._setupEventListener();
     }

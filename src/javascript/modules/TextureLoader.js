@@ -33,6 +33,7 @@ class TextureLoader {
             fullScreenButton: document.querySelector('.js-full-screen-button'),
             timer: document.querySelector('.js-infos-timer'),
             contestOver: document.querySelector('.js-contest-over'),
+            form: document.querySelector('.js-form'),
         }
         
         this._setup();
@@ -106,7 +107,11 @@ class TextureLoader {
         if (this._isContestOver()) {
             setTimeout(() => {
                 this._ui.contestOver.classList.add('transitionIn');
-            }, 2700)
+            }, 2700);
+
+            // Disable form
+            this._ui.form.style.pointerEvents = 'none';
+            this._ui.form.setAttribute('action', '');
         } else {
             this._ui.contestOver.classList.add('transitionOut');
         }
