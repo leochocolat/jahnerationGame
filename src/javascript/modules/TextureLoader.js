@@ -32,6 +32,7 @@ class TextureLoader {
             players: document.querySelectorAll('.js-player'),
             fullScreenButton: document.querySelector('.js-full-screen-button'),
             timer: document.querySelector('.js-infos-timer'),
+            contestOver: document.querySelector('.js-contest-over'),
         }
         
         this._setup();
@@ -100,7 +101,22 @@ class TextureLoader {
 
         setTimeout(() => {
             this._ui.playerText.classList.add('transitionIn');
-        }, 1800)
+        }, 1800);
+
+        if (this._isContestOver()) {
+            setTimeout(() => {
+                this._ui.contestOver.classList.add('transitionIn');
+            }, 2700)
+        } else {
+            this._ui.contestOver.classList.add('transitionOut');
+        }
+    }
+
+    _isContestOver() {
+        const endDate = new Date('February 21, 2022 00:01:00');
+        const timeRemaining = endDate - Date.now();
+
+        return timeRemaining < 0;
     }
 
     loadedPlayerTexture(index) {

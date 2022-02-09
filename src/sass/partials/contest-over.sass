@@ -1,0 +1,49 @@
+.contest-over
+    position: absolute
+    left: 0
+    top: 0
+
+    opacity: 0
+
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+    width: 100%
+    height: 100%
+
+    z-index: 100
+
+    transition: opacity 0.3s ease-in-out
+
+    &.transitionIn
+        opacity: 1
+
+        transition: opacity 0.5s ease-in-out
+
+    &.transitionOut
+        display: none
+
+.contest-over__background
+    position: absolute
+
+    width: 100%
+    height: 100%
+
+    left: 0
+    top: 0
+
+    background: $red-top
+
+    opacity: 0.8
+
+.contest-over__message
+    position: relative
+
+    text-align: center
+    text-transform: uppercase
+    font-size: 25px
+    color: white
+
+    cursor: pointer

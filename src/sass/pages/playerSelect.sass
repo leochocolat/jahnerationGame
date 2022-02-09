@@ -1,5 +1,5 @@
 @use "sass:math"
-    
+
 .container
     width: 100%
     height: 100vh
@@ -16,11 +16,10 @@
     position: absolute
     top: 0
     left: 0
-    
+
     width: 100%
     height: 100vh
     height: calc(var(--vh, 1vh) * 100)
-    
 
     visibility: visible
 
@@ -30,7 +29,6 @@
     &.hidden
         visibility: hidden
         opacity: 0
-
 
 .playerSelect__skewedBackground
     background-color: #FC4846
@@ -68,10 +66,8 @@
             opacity: 1
             transform: rotate(0) translateY(0)
             @for $i from 0 through 30
-                &--#{$i} 
-                    transition-delay: #{$i * 0.05}s 
-
-             
+                &--#{$i}
+                    transition-delay: #{$i * 0.05}s
 
     .fontSize-player
         font-size: 71px
@@ -92,7 +88,7 @@
 
     cursor: pointer
 
-    & img 
+    & img
         width: 100%
         position: absolute
         transition: transform .2s ease-in-out
@@ -117,7 +113,6 @@
             &:before
                 transition: opacity 0.05s ease-in-out 0s
                 opacity: 1
-            
 
 .player__first
     transform: translate(-5%, -8.4%)
@@ -148,7 +143,6 @@
         transform: translate(34%,-103%) skewY(5.125deg)
         transition: transform .2s ease-in-out
 
-    
         &::before
             display: inline-block
             content: ""
@@ -160,7 +154,6 @@
             position: absolute
             transform: skewY(-30.125deg)
             transition: all .2s ease-in-out
-
 
 .player__name-content-container
     display: block
@@ -218,7 +211,7 @@
         top: 0
         bottom: 0
         left: 100%
-        
+
         margin: auto
 
         width: 100%
@@ -260,11 +253,9 @@
             width: 70px
     .playerSelect__players
         transform: scale(0.8) translateX(0px)
-    
-    
+
 @media screen and (max-height: 500px) and (orientation: landscape)
     .container__playerSelect
-
 
     .playerSelect__logo
         top: 10px
@@ -286,8 +277,7 @@
 
     .playerSelect__players
         margin-top: 50px
-        transform: scale(1.1) translateX(-32px);
-
+        transform: scale(1.1) translateX(-32px)
 
     .player__background
         width: 54px
@@ -320,15 +310,13 @@
         background-color: #a72b2e
 
         transform: translate(34%,-103%) skewY(5.125deg)
-    
+
         &::before
             position: absolute
-            right: -19%;
-            top: -4px;
+            right: -19%
+            top: -4px
 
             width: 15px
             height: 20px
 
             transform: skewY(-30.125deg)
-    
-    

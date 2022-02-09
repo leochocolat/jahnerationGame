@@ -15,7 +15,8 @@ class SelectPlayer {
             backgroundTransitionRed: document.querySelector('.js-bgContainer-red'),
             backgroundTransitionWhite: document.querySelector('.js-bgContainer-white'),
             players: this.container.querySelectorAll('.js-player'),
-            playerTimerHead: document.querySelector('.js-player-head')
+            playerTimerHead: document.querySelector('.js-player-head'),
+            contestOver: document.querySelector('.js-contest-over'),
         }
 
         this._textureLoader = new TextureLoader();
@@ -59,6 +60,8 @@ class SelectPlayer {
             this._ui.players[index].addEventListener('click', () => { this._selectPlayer(index) });
         }
 
+        this._ui.contestOver.addEventListener('click', this._contestOverClickHandler.bind(this));
+
         ResizeManager.addEventListener('resize:end', () => {
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
@@ -66,5 +69,13 @@ class SelectPlayer {
             }, 1000);
         });
     }
+
+    _contestOverClickHandler() {
+        this._ui.contestOver.classList.remove('transitionIn');
+
+        setTimeout(() => {
+            this._ui.contestOver.classList.add('transitionOut');
+        }, 300);
+    } 
 }
 export default SelectPlayer;
