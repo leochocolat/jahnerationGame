@@ -118,7 +118,7 @@ class TextureLoader {
     }
 
     _isContestOver() {
-        const endDate = new Date('February 20, 2022 00:00:00');
+        const endDate = new Date('February 21, 2022 00:00:00');
         const timeRemaining = endDate - Date.now();
 
         return timeRemaining < 0;
