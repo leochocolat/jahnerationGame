@@ -38,15 +38,11 @@ class Cinematic {
     play() {
         return new Promise(resolve => {
             this.ui.video.play();
-            this.ui.video.addEventListener('ended', () => {
+            setTimeout(() => {
                 resolve();
-                // let timeline = new TimelineLite();
-
-                // timeline.fromTo(this.ui.backgroundTransitionWhite, 1.6, { x: '0%' }, { x: '-200%', ease: Power4.easeInOut }, 0);
-                // timeline.fromTo(this.ui.backgroundTransitionRed, 1.6, { x: '0%' }, { x: '-200%', ease: Power4.easeInOut }, 0.1);
-                // timeline.set(this.el, { autoAlpha: 0 }, 0.8);
-            });
+            }, 5150);
         })
+        
     }
 
     _setup() {
