@@ -36,6 +36,7 @@
   "dependencies": {
     "acorn": "^7.3.1",
     "acorn-dynamic-import": "^4.0.0",
+    "arcade-api": "github:arcade-feu/arcade-api",
     "browser-sync": "^2.26.7",
     "dat.gui": "^0.7.6",
     "events": "^3.2.0",

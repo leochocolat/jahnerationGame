@@ -6,7 +6,11 @@ import CountDown from './CountDown';
 import ControlsIndications from './ControlsIndications';
 import { TweenLite } from 'gsap';
 import emitter from '../events/emitter';
+import Arcade from "arcade-api";
 
+// Map a Machine Key to a Keyboard Key
+Arcade.registerKey("a", "ArrowLeft");
+Arcade.registerKey("b", "ArrowRight");
 
 class GameManager {
     constructor(stage, player, obstacleManager, timer) {
@@ -218,13 +222,39 @@ class GameManager {
     }
 
     _setupEventListeners() {
-        window.addEventListener('keydown', this._keyDownHandler.bind(this));
-        window.addEventListener('keyup', this._keyUpHandler.bind(this));
+        Arcade.addEventListener('keydown', this._keyDownHandler.bind(this));
+        Arcade.addEventListener('keyup', this._keyUpHandler.bind(this));
+        Arcade.addEventListener('joystick:move', this._joystickMoveHandler.bind(this));
+        Arcade.addEventListener('joystick:press', this._joystickPressHandler.bind(this));
+        Arcade.addEventListener('joystick:release', this._joystickReleaseHandler.bind(this));
         
         this._player.hammer.on('swipeleft', (event) => this._swipeHandler(event))
         this._player.hammer.on('swiperight', (event) => this._swipeHandler(event))
         this._player.hammer.on('swipeup', (event) => this._swipeHandler(event))
         this._player.hammer.on('tap', (event) => this._swipeHandler(event))
+    }
+
+    /**
+     * Joystick
+     */
+    _joystickMoveHandler() {
+        
+    }
+
+    _joystickPressHandler() {
+        if (!this._controlsDown) return;
+
+        this.keyPressed.up = true;
+        this._controlsDown._playTween(this._controlsDown.ui.spacebar);
+        setTimeout(() => {
+            this._controlsDown.transitionOutKey(this._controlsDown.ui.spacebar);
+        }, 1200);
+    }
+
+    _joystickReleaseHandler() {
+        if (!this._controlsDown) return;
+
+        this._controlsDown._validateControl(this._controlsDown.ui.spacebar);
     }
 
     _keyPressedAnimation() {
@@ -252,7 +282,7 @@ class GameManager {
     _keyDownHandler(event) {
         if (!this._controlsDown) return;
 
-        switch (event.code) {
+        switch (event.keyboardKey) {
             case 'Space':
             case 'ArrowUp':
                 this.keyPressed.up = true;
@@ -293,7 +323,7 @@ class GameManager {
     _keyUpHandler(e) {
         if (!this._controlsDown) return;
 
-        switch (e.code) {
+        switch (e.keyboardKey) {
             case 'Space':
             case 'ArrowUp':
                 this._controlsDown._validateControl(this._controlsDown.ui.spacebar);

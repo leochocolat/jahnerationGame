@@ -2,6 +2,7 @@ import _ from 'underscore';
 import { TweenLite, Power3, TweenMax } from 'gsap';
 import Hammer from 'hammerjs';
 import DeviceUtils from '../utils/DeviceUtils'
+import Arcade from "arcade-api";
 
 const SCALESTART = 1;
 const SCALEPRESS = 1.02;
@@ -10,6 +11,7 @@ const SCALEJUMP = .95;
 const EASEPRESS = Power3.easeOut;
 const EASEJUMP = Power3.easeOut;
 const EASEEND = '';
+
 
 class Player {
     constructor(canvas, playerIndex, resources, shadows, stage) {
@@ -313,8 +315,11 @@ class Player {
 
 
     _setupEventListeners() {
-        window.addEventListener('keydown', this._keyDownHandler);
-        window.addEventListener('keyup', this._keyUpHandler);
+        Arcade.addEventListener('keydown', this._keyDownHandler);
+        Arcade.addEventListener('keyup', this._keyUpHandler);
+        Arcade.addEventListener('joystick:move', this._joystickMoveHandler.bind(this));
+        Arcade.addEventListener('joystick:press', this._joystickPressHandler.bind(this));
+        Arcade.addEventListener('joystick:release', this._joystickReleaseHandler.bind(this));
 
         this.hammer.on('swipeleft', (event) => this._swipeHandler(event))
         this.hammer.on('swiperight', (event) => this._swipeHandler(event))
@@ -323,10 +328,44 @@ class Player {
 
     }
 
+    /**
+     * Joystick
+     */
+    _joystickMoveHandler(e) {
+        if (e.x > 0) {
+            if (this._isPressed || this._isJumping) return;
+            this._arrowPressed = true;
+            this._updatePositionsArrow(1);
+            this.updatePositionFakePlayer(1);
+        } else if (e.x < 0) {
+            if (this._isPressed || this._isJumping) return;
+            this._arrowPressed = true;
+            this._updatePositionsArrow(0);
+            this.updatePositionFakePlayer(0);
+        }
+    }
+
+    _joystickPressHandler() {
+        if (!this._allowControls) return;
+
+        if (this._isPressed || this._isJumping) return;
+        this._isJumping = true;
+        this._isPressed = true;
+        this._playPreJumpAnimation();
+    }
+
+    _joystickReleaseHandler() {
+        if (!this._allowControls) return;
+
+        this._isPressed = false;
+        this._isPlayerJumping = true;
+        this._playJumpAnimation();
+    }
+
     _keyDownHandler(e) {
         if (!this._allowControls) return;
 
-        switch (e.code) {
+        switch (e.keyboardKey) {
             case 'Space':
             case 'ArrowUp':
                 if (this._isPressed || this._isJumping) return;
@@ -350,7 +389,7 @@ class Player {
     }
 
     _keyUpHandler(e) {
-        switch (e.code) {
+        switch (e.keyboardKey) {
             case 'Space':
             case 'ArrowUp':
                 this._isPressed = false;
