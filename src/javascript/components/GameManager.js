@@ -40,17 +40,23 @@ class GameManager {
         this._timer = new Timer();
         this._timer.resetTimer();
 
-        if (sessionStorage.getItem('tuto')) {
-            this._setupCountDown();
-            this._startCountdown();
-            document.querySelector('.js-controlsIndications').remove();
-            this._allowTutorial = false;
-        } else {
-            sessionStorage.setItem('tuto', true);
-            this._setupCountDown();
-            this._setupContolsTutorial();
-            this._allowTutorial = true;
-        }
+        // store tutorial state
+        // if (sessionStorage.getItem('tuto')) {
+        //     this._setupCountDown();
+        //     this._startCountdown();
+        //     document.querySelector('.js-controlsIndications').remove();
+        //     this._allowTutorial = false;
+        // } else {
+        //     sessionStorage.setItem('tuto', true);
+        //     this._setupCountDown();
+        //     this._setupContolsTutorial();
+        //     this._allowTutorial = true;
+        // }
+
+        this._setupCountDown();
+        this._startCountdown();
+        document.querySelector('.js-controlsIndications').remove();
+        this._allowTutorial = false;
 
         //debug controls indications
         // this._setupCountDown();
@@ -218,11 +224,11 @@ class GameManager {
     }
 
     _setupEventListeners() {
-        Arcade.addEventListener('keydown', this._keyDownHandler.bind(this));
-        Arcade.addEventListener('keyup', this._keyUpHandler.bind(this));
-        Arcade.addEventListener('joystick:move', this._joystickMoveHandler.bind(this));
-        Arcade.addEventListener('joystick:press', this._joystickPressHandler.bind(this));
-        Arcade.addEventListener('joystick:release', this._joystickReleaseHandler.bind(this));
+        // Arcade.addEventListener('keydown', this._keyDownHandler.bind(this));
+        // Arcade.addEventListener('keyup', this._keyUpHandler.bind(this));
+        // Arcade.addEventListener('joystick:move', this._joystickMoveHandler.bind(this));
+        // Arcade.addEventListener('joystick:press', this._joystickPressHandler.bind(this));
+        // Arcade.addEventListener('joystick:release', this._joystickReleaseHandler.bind(this));
         
         this._player.hammer.on('swipeleft', (event) => this._swipeHandler(event))
         this._player.hammer.on('swiperight', (event) => this._swipeHandler(event))

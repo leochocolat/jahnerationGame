@@ -351,11 +351,10 @@ class Player {
 
         // Jump
         if (e.position.y < 0) {
-            if (this._isPressed || this._isJumping) return;
-            this._isPressed = true;
-            this._isJumping = true;
-            this._isPlayerJumping = true;
-            this._playJumpAnimation();
+            // if (this._isPressed || this._isJumping) return;
+            // this._isPressed = false;
+            // this._isPlayerJumping = true;
+            // this._playJumpAnimation();
         }
     }
 
@@ -363,9 +362,9 @@ class Player {
         if (!this._allowControls) return;
 
         if (this._isPressed || this._isJumping) return;
-        this._isJumping = true;
-        this._isPressed = true;
-        this._playPreJumpAnimation();
+        this._isPressed = false;
+        this._isPlayerJumping = true;
+        this._playJumpAnimation();
     }
 
     _joystickReleaseHandler() {

@@ -104,17 +104,17 @@ class TextureLoader {
             this._ui.playerText.classList.add('transitionIn');
         }, 1800);
 
-        if (this._isContestOver()) {
-            setTimeout(() => {
-                this._ui.contestOver.classList.add('transitionIn');
-            }, 2700);
+        // if (this._isContestOver()) {
+        //     setTimeout(() => {
+        //         this._ui.contestOver.classList.add('transitionIn');
+        //     }, 2700);
 
-            // Disable form
-            this._ui.form.style.pointerEvents = 'none';
-            this._ui.form.setAttribute('action', '');
-        } else {
-            this._ui.contestOver.classList.add('transitionOut');
-        }
+        //     // Disable form
+        //     this._ui.form.style.pointerEvents = 'none';
+        //     this._ui.form.setAttribute('action', '');
+        // } else {
+        //     this._ui.contestOver.classList.add('transitionOut');
+        // }
     }
 
     _isContestOver() {
