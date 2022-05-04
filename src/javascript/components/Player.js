@@ -332,16 +332,30 @@ class Player {
      * Joystick
      */
     _joystickMoveHandler(e) {
-        if (e.x > 0) {
+        if (e.joystickId !== 1) return;
+
+        // Left Right
+        if (e.position.x > 0) {
             if (this._isPressed || this._isJumping) return;
             this._arrowPressed = true;
             this._updatePositionsArrow(1);
             this.updatePositionFakePlayer(1);
-        } else if (e.x < 0) {
+        } 
+
+        if (e.position.x < 0) {
             if (this._isPressed || this._isJumping) return;
             this._arrowPressed = true;
             this._updatePositionsArrow(0);
             this.updatePositionFakePlayer(0);
+        }
+
+        // Jump
+        if (e.position.y < 0) {
+            if (this._isPressed || this._isJumping) return;
+            this._isPressed = true;
+            this._isJumping = true;
+            this._isPlayerJumping = true;
+            this._playJumpAnimation();
         }
     }
 

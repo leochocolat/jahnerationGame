@@ -3,6 +3,12 @@ import DeviceUtils from './utils/DeviceUtils';
 import AudioManager from './managers/AudioManager';
 import ResizeManager from './managers/ResizeManager';
 import SoundButtonComponent from './components/SoundButtonComponent';
+import Arcade from "arcade-api";
+
+// Map a Machine Key to a Keyboard Key
+Arcade.registerKey("a", "ArrowLeft");
+Arcade.registerKey("b", "ArrowRight");
+Arcade.registerKey("c", "Space");
 
 let width, height;
 let orientationMessage = document.querySelector('.js-orientation-message');

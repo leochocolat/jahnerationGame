@@ -8,10 +8,6 @@ import { TweenLite } from 'gsap';
 import emitter from '../events/emitter';
 import Arcade from "arcade-api";
 
-// Map a Machine Key to a Keyboard Key
-Arcade.registerKey("a", "ArrowLeft");
-Arcade.registerKey("b", "ArrowRight");
-
 class GameManager {
     constructor(stage, player, obstacleManager, timer) {
         this._stage = stage
@@ -237,8 +233,47 @@ class GameManager {
     /**
      * Joystick
      */
-    _joystickMoveHandler() {
-        
+    _joystickMoveHandler(e) {
+        console.log(e);
+        if (e.joystickId !== 1) return;
+
+        // Right
+        if (e.position.x > 0) {
+            if (!this._allowArrowKey) return;
+            if (this.keyPressed.right) return;
+
+            this.keyPressed.right = true;
+            this._controlsDown._playTween(this._controlsDown.ui.right);
+
+            if (this.keyPressed.left) {
+                setTimeout(() => {
+                    this._controlsDown.transitionOut();
+                }, 1200);
+            }
+        } 
+
+        // Left
+        if (e.position.x < 0) {
+            if (!this._allowArrowKey) return;
+            if (this.keyPressed.left) return;
+            this.keyPressed.left = true;
+            this._controlsDown._playTween(this._controlsDown.ui.left);
+            if (this.keyPressed.right) {
+                setTimeout(() => {
+                    this._controlsDown.transitionOut();
+                }, 1200);
+            } 
+        }
+
+        // Jump
+        if (e.position.y < 0) {
+            if (this.keyPressed.up) return;
+            this.keyPressed.up = true;
+            this._controlsDown._playTween(this._controlsDown.ui.spacebar);
+            setTimeout(() => {
+                this._controlsDown.transitionOutKey(this._controlsDown.ui.spacebar);
+            }, 1200);
+        }
     }
 
     _joystickPressHandler() {
